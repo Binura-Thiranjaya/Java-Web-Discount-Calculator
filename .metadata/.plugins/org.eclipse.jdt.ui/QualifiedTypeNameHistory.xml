@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="databaseLayer.DBConnection"/>
+    <fullyQualifiedTypeName name="databaseAccessLayer.DiscountAccessLayer"/>
+    <fullyQualifiedTypeName name="databaseAccessLayer.DiscountAccessLogic"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.jsp.tagext.SimpleTagSupport"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.jsp.JspException"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.protocol.Resultset"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="database.Resultset"/>
+    <fullyQualifiedTypeName name="org.eclipse.jdt.internal.compiler.ast.WhileStatement"/>
+    <fullyQualifiedTypeName name="controller.DiscountController"/>
+    <fullyQualifiedTypeName name="model.DiscountModel"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="database.DbConnection"/>
+</qualifiedTypeNameHistroy>

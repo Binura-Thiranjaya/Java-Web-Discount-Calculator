@@ -1,0 +1,32 @@
+package controller;
+
+import model.DiscountModel;
+import java.sql.ResultSet;
+import database.DbConnection;
+
+public class DiscountController {
+	DiscountModel objDiscountModel;
+
+	public DiscountController() {
+		// bal = new courseAddAccessLogic();
+
+	}
+
+	public DiscountModel addCustomerId(int customerID) {
+		objDiscountModel = new DiscountModel(customerID);
+		return objDiscountModel;
+	}
+
+	public void getDiscountByID(DiscountModel customerID) {
+		try {
+			String query = "select * from customer where customer_id = " + customerID;
+			ResultSet rs = DbConnection.search(query);
+			while (rs.next()) {
+				String name = rs.getString("customer_id");
+				System.out.println("Customer Id: " + name);
+			}
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	}
+}

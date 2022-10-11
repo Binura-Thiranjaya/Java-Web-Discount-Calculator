@@ -1,0 +1,10 @@
+package databaseLayer;
+
+public class dbcon {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

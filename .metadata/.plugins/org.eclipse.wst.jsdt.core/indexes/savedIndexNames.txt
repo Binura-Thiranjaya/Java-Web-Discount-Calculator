@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+/Users/binurathiranjaya/Downloads/Code/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+2926405700.index
+2039017627.index
+2630236015.index
+1399802105.index
+1271191270.index
+3337965805.index
+1582415137.index

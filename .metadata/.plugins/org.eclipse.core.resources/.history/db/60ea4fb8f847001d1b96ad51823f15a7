@@ -1,0 +1,15 @@
+package databaseLayer;
+import java.sql.*;
+ 
+
+public class DBConnection {
+		public DBConnection() {
+			   try {
+				   Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/nippon_paint", "root", "");//Establishing connection
+				   System.out.println("Connected With the database successfully");
+				   } catch (SQLException e) {
+				   System.out.println("Error while connecting to the database");
+				   }
+				   }
+		}
+}

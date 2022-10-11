@@ -1,0 +1,33 @@
+package databaseLayer;
+
+import java.sql.*;
+
+public class DBConnection {
+	   private Connection con;
+	   private Statement st;
+	   private ResultSet rs;
+	   public DBConnection()throws ClassNotFoundException {
+	      try {
+	         Class.forName("com.mysql.cj.jdbc.Driver");
+	         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/nippon_paint","root","");
+	         st=con.createStatement();
+	      }
+	      catch(Exception ex) {
+	         System.out.println("Error: "+ex);
+	      }
+	   }
+	   public void getData(String query) {
+		      try {
+		         //String query="select * from discount";
+		         rs=st.executeQuery(query);
+		         System.out.println("Records from Database");
+		         while(rs.next()) {
+		            String name=rs.getString("customer_id");
+		            System.out.println("Customer Id: "+name);
+		         }
+		      }
+		      catch(Exception ex) {
+		         System.out.println(ex);
+		      }
+		   }
+}

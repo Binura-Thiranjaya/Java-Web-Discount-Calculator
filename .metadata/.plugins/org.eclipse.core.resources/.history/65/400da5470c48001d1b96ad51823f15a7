@@ -1,0 +1,24 @@
+package databaseLayer;
+
+import java.sql.*;
+
+
+public class dbcon {
+	private static Connection con;
+	   private static Statement st;
+	   private ResultSet rs;
+	public static void main(String[] args) throws ClassNotFoundException {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+	         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/nippon_paint","root","");
+	         st=con.createStatement();																														// connection
+			System.out.println("Connected With the database successfully");
+		} catch (SQLException e) {
+			System.out.println("Error while connecting to the database");
+		}
+	}
+	 
+	
+
+}

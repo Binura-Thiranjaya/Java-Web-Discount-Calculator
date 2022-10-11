@@ -1,0 +1,9 @@
+package controller;
+import model.DiscountModel;
+import databaseAccessLayer.DiscountAccessLayer;
+
+
+public class DiscountController {
+	DiscountModel objmode;
+
+}

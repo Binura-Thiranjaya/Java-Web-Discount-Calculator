@@ -1,0 +1,75 @@
+package servlet;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+
+import controller.DiscountController;
+import database.DbConnection;
+import model.DiscountModel;
+
+@WebServlet("/index")
+public class DiscountServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	DiscountController objDiscountController;
+	DiscountModel objDiscountModel;
+
+	public DiscountServlet() {
+		super();
+		objDiscountController = new DiscountController();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		String customerId = request.getParameter("customer_id");
+		int materialID = 0;
+		if (!customerId.equals("Select ID")) {
+			try {
+				ResultSet rs = DbConnection.search(
+						"SELECT i.inv_number,i.customer_code,c.customer_name, DateDiff(invoice_setoff_date,invoice_date) AS Day ,d.material_group,SUM(d.quantity) aS Total FROM invoice i INNER JOIN invoice_detail d ON i.inv_number = d.invoice_number INNER JOIN customers c ON i.customer_code = c.customer_code WHERE C.customer_code = '"
+								+ customerId + "' GROUP BY d.invoice_number,d.material_group");
+				out.println("<table border=1 width=50% height=50%>");
+				out.println("<tr> <th>Invoice No</th><th>Customer Code</th><th>Customer Name</th><th>Discount</th><tr>");
+				while (rs.next()) {
+					// System.out.println("Day:" + rs.getString("Day"));
+					ResultSet rs2 = DbConnection.search("SELECT * FROM `time_slots` WHERE '"
+							+ Integer.parseInt(rs.getString("Day")) + "' BETWEEN `from` AND`to`");
+					while (rs2.next()) {
+						// System.out.println("Time Slot Id:" + rs2.getString("id"));
+						materialID = objDiscountController.findMaterialID(rs.getString("material_group"));
+						ResultSet rs3 = DbConnection.search("SELECT `value` FROM `schema_detail` WHERE `time_slots`='"
+								+ rs2.getString("id") + "' AND`material_group`='" + materialID + "'");
+						while (rs3.next()) {
+							int Discount = objDiscountController.Discount(Integer.parseInt(rs3.getString("value")),
+									Integer.parseInt(rs.getString("Total")));
+							out.println("<tr><td>" + Integer.parseInt(rs.getString("inv_number")) + "</td><td>"
+									+ Integer.parseInt(rs.getString("customer_code")) + "</td><td>"
+									+ rs.getString("customer_name") + "</td>><td>" + Discount + "</td></tr>");
+						}
+					}
+
+				}
+				out.println("</table>");
+				out.println("</html></body>");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

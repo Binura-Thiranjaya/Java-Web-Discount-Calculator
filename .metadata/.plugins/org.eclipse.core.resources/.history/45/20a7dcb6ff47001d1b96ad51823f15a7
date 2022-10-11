@@ -1,0 +1,13 @@
+package controller;
+import model.DiscountModel;
+import databaseAccessLayer.DiscountAccessLogic;
+
+
+public class DiscountController {
+	DiscountModel objmodel;
+	DiscountAccessLogic objAccessLogic;
+	
+	public DiscountController() {
+		objAccessLogic = new DiscountAccessLogic();
+	}
+}

@@ -1,0 +1,5 @@
+package databaseAccessLayer;
+
+public class DiscountAccessLayer {
+
+}

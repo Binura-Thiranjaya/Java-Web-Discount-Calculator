@@ -1,0 +1,22 @@
+package controller;
+import model.DiscountModel;
+import databaseAccessLayer.DiscountAccessLogic;
+
+
+public class DiscountController {
+	DiscountModel objModel;
+	DiscountAccessLogic objAccessLogic;
+	
+	public DiscountController() {
+		objAccessLogic = new DiscountAccessLogic();
+		objModel = new DiscountModel();
+		
+	}
+	public DiscountModel setCustomerId(int id) {
+		objModel = new  DiscountModel(id);
+		return objModel;
+	}
+	public void DiscountById(objModel.) {
+		
+	}
+}
